@@ -192,60 +192,52 @@ namespace ExcercisesInheritance
         }
         static public void SummarizeShapes(List<Shape> allShapes)
         {
-            Dictionary<ShapeCode, int> shapeToAmountMap = new Dictionary<ShapeCode, int>();
             List<KeyValuePair<ShapeCode, int>> kvpList = new List<KeyValuePair<ShapeCode, int>>();
-            int nbTriangles = 1;
-            int nbRectangles = 1;
-            int nbCircles = 1;
+            int nbTriangles = 1, nbRectangles = 1, nbCircles = 1;
 
             foreach (Shape shape in allShapes)
             {
                 switch(shape.MyShape)
                 {
                     case ShapeCode.Circle:
-                        shapeToAmountMap[shape.MyShape] = nbCircles++;
+                        kvpList.Add(new KeyValuePair<ShapeCode, int>(shape.MyShape, nbCircles));
                         break;
                     case ShapeCode.Rectangle:
-                        shapeToAmountMap[shape.MyShape] = nbRectangles++;
+                        kvpList.Add(new KeyValuePair<ShapeCode, int>(shape.MyShape, nbRectangles));
                         break;
                     case ShapeCode.Triangle:
-                        shapeToAmountMap[shape.MyShape] = nbTriangles++;
+                        kvpList.Add(new KeyValuePair<ShapeCode, int>(shape.MyShape, nbTriangles));
                         break;
                 }
             }
-            foreach (KeyValuePair<ShapeCode, int> item in shapeToAmountMap)
-            {
-                // do something with entry.Value or entry.Key
-                kvpList.Add(item);
-            }
-
-            //Console.WriteLine(intArray[0] + "_" + intArray[1] + "_" + intArray[2]);
-            //sb.Append("You selected ")
+            //You selected X A
             if (kvpList.Count() == 1)
             {
                 //Console.WriteLine("1!");
                 Console.WriteLine($"You selected " +
-                    $"{NumberToText(kvpList[0].Value).ToLower()} " +                                         //a
-                    $"{AddPluradSuffixIfMultiple(kvpList[0].Value, kvpList[0].Key.ToString()).ToLower()}."); //a
+                    $"{NumberToText(kvpList[0].Value).ToLower()} " +                                          //x of-
+                    $"{AddPluradSuffixIfMultiple(kvpList[0].Value, kvpList[0].Key.ToString()).ToLower()}.");  //a
             }
+            //You selected X A and Y B
             if (kvpList.Count() == 2)
             {
                 //Console.WriteLine("2!");
                 Console.WriteLine($"You selected " +
-                    $"{NumberToText(kvpList[0].Value).ToLower()} " +                                           //a
+                    $"{NumberToText(kvpList[0].Value).ToLower()} " +                                           //x of-
                     $"{AddPluradSuffixIfMultiple(kvpList[0].Value, kvpList[0].Key.ToString()).ToLower()} " +   //a
-                    $"and {NumberToText(kvpList[1].Value).ToLower()} " +                                       //b                                               
+                    $"and {NumberToText(kvpList[1].Value).ToLower()} " +                                       //y of-                                               
                     $"{AddPluradSuffixIfMultiple(kvpList[1].Value, kvpList[1].Key.ToString()).ToLower()}. ");  //b
             }
+            //You selected X A, Y B and Z C
             if (kvpList.Count() == 3)
             {
                 //Console.WriteLine("3!");
                 Console.WriteLine($"You selected " +
-                    $"{NumberToText(kvpList[0].Value).ToLower()} " +                                           //a
+                    $"{NumberToText(kvpList[0].Value).ToLower()} " +                                           //x of-
                     $"{AddPluradSuffixIfMultiple(kvpList[0].Value, kvpList[0].Key.ToString()).ToLower()}, " +  //a
-                    $"{NumberToText(kvpList[1].Value).ToLower()} " +                                           //b
+                    $"{NumberToText(kvpList[1].Value).ToLower()} " +                                           //y of-
                     $"{AddPluradSuffixIfMultiple(kvpList[1].Value, kvpList[1].Key.ToString()).ToLower()} " +   //b
-                    $"and {NumberToText(kvpList[2].Value).ToLower()} " +                                       //c
+                    $"and {NumberToText(kvpList[2].Value).ToLower()} " +                                       //z of-
                     $"{AddPluradSuffixIfMultiple(kvpList[2].Value, kvpList[2].Key.ToString()).ToLower()}. ");  //c
             }
         }
